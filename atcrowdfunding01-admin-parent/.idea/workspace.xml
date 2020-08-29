@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ecc91f70-8a72-4a46-9d06-38b52d3f4496" name="Default Changelist" comment="" />
+    <list default="true" id="ecc91f70-8a72-4a46-9d06-38b52d3f4496" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../atcrowdfunding06-common-reverse/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atcrowdfunding03-admin-component/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/atcrowdfunding03-admin-component/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../atcrowdfunding06-common-reverse/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../atcrowdfunding06-common-reverse/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +19,23 @@
   </component>
   <component name="CompilerWorkspaceConfiguration">
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -25,18 +52,51 @@
     </option>
   </component>
   <component name="ProjectId" id="1gioAvU8rPGuGuDUww4zTGgmyP7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/atcrowdfunding02-admin-webui/src/main/resources/mybatis/mapper" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:project_crowd@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:project_crowd@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@2280bb99" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -48,7 +108,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598606633316</updated>
-      <workItem from="1598606634556" duration="661000" />
+      <workItem from="1598606634556" duration="3355000" />
+      <workItem from="1598704057674" duration="270000" />
+      <workItem from="1598704448220" duration="5727000" />
+      <workItem from="1598715688654" duration="1094000" />
     </task>
     <servers />
   </component>
@@ -56,22 +119,46 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1598606701548">
+    <state x="320" y="115" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598708399288">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1598606701548" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1598606701547">
+    <state x="320" y="115" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1598708399288" />
+    <state x="460" y="158" key="#com.intellij.ide.util.MemberChooser" timestamp="1598714917555">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1598606701547" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1598606701546">
+    <state x="460" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1598714917555" />
+    <state x="161" y="382" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1598715338198">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1598606701546" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1598606701547">
+    <state x="161" y="382" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.900@0.0.1440.900" timestamp="1598715338198" />
+    <state x="266" y="337" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1598715340495">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1598606701547" />
+    <state x="266" y="337" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1440.900@0.0.1440.900" timestamp="1598715340495" />
+    <state width="959" height="245" key="GridCell.Tab.0.bottom" timestamp="1598715673931">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="959" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1598715673931" />
+    <state width="959" height="245" key="GridCell.Tab.0.center" timestamp="1598715673930">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="959" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1598715673930" />
+    <state width="959" height="245" key="GridCell.Tab.0.left" timestamp="1598715673930">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="959" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1598715673930" />
+    <state width="959" height="245" key="GridCell.Tab.0.right" timestamp="1598715673931">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="959" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1598715673931" />
+    <state x="258" y="112" key="Maven.ArtifactSearchDialog" timestamp="1598716033728">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="258" y="112" key="Maven.ArtifactSearchDialog/0.0.1440.900@0.0.1440.900" timestamp="1598716033728" />
+    <state x="208" y="23" key="SettingsEditor" timestamp="1598705712333">
+      <screen x="0" y="23" width="1440" height="799" />
+    </state>
+    <state x="208" y="23" key="SettingsEditor/0.23.1440.799@0.23.1440.799" timestamp="1598705712333" />
     <state x="97" y="147" key="new project wizard" timestamp="1598606833643">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
