@@ -16,6 +16,14 @@ public class Admin {
     public Admin(){
 
     }
+    public Admin(Integer id,String loginAcct,String userPswd,String userName,String email,String createTime){
+        this.id = id;
+        this.loginAcct = loginAcct;
+        this.userPswd = userPswd;
+        this.userName = userName;
+        this.email = email;
+        this.createTime = createTime;
+    }
 
     @Override
     public String toString() {
