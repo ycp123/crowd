@@ -29,5 +29,7 @@
     <!--        配置mapper位置-->
         <property name="basePackage" value="com.atguigu.crowd.mapper"></property>
     </bean>
+
 </beans>
+
 
