@@ -70,6 +70,14 @@
   <sql id="Base_Column_List" >
     id, login_acct, user_pswd, user_name, email, create_time
   </sql>
+  <select id="selectAdminListByKeyWord" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List"/>
+    from t_admin
+    where login_acct like concat("%",#{keyWord},"%") or
+    user_name like concat("%",#{keyWord},"%") or
+    email like concat("%",#{keyWord},"%")
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.atguigu.crowd.AdminExample" >
     select
     <if test="distinct" >

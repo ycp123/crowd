@@ -1,5 +1,8 @@
 package com.atguigu.crowd.mvc.config;
 
+import com.atguigu.crowd.constant.CrowdConstant;
+import com.atguigu.crowd.exception.AccessForbiddenException;
+import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.util.CrowdUtil;
 import com.atguigu.crowd.util.ResultEntity;
 import com.google.gson.Gson;
@@ -20,7 +23,7 @@ public class CrowedExceptionResolver {
                                                     HttpServletRequest request,
                                                     HttpServletResponse response) throws IOException {
         String viewName = "system-error";
-        return commonResolve(viewName,exception,request,response);
+        return commonResolve(viewName, exception, request, response);
     }
 
     private ModelAndView commonResolve(String viewName, Exception exception, HttpServletRequest request,
@@ -42,11 +45,26 @@ public class CrowedExceptionResolver {
         //5.如果不是ajax类型 则创建ModelAndView对象
         ModelAndView modelAndView = new ModelAndView();
         //6.将exception对象存入模型当中
-        modelAndView.addObject("exception", exception);
+        modelAndView.addObject(CrowdConstant.ATTR_NAME_EXCEPTION, exception);
         //7.设置对应视图名称
         modelAndView.setViewName(viewName);
         //8.返回ModelAndView对象
         return modelAndView;
 
+    }
+
+    @ExceptionHandler(value = LoginFailedException.class)
+    public ModelAndView resolveLoginFailedException(LoginFailedException exception,
+                                                    HttpServletRequest request,
+                                                    HttpServletResponse response) throws IOException {
+        String viewName = "admin-login";
+        return commonResolve(viewName, exception, request, response);
+    }
+    @ExceptionHandler(value = AccessForbiddenException.class)
+    public ModelAndView resolveAccessForbiddenException(AccessForbiddenException exception,
+                                                        HttpServletRequest request,
+                                                        HttpServletResponse response) throws IOException{
+        String viewName = "admin-login";
+        return commonResolve(viewName,exception,request,response);
     }
 }

@@ -17,16 +17,29 @@
     </bean>
     <!--    配置sqlSessionFactoryBean-->
     <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
-    <!--        指定xml位置-->
+        <!--        指定xml位置-->
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
-    <!--        装配数据源-->
+        <!--        装配数据源-->
         <property name="dataSource" ref="dataSource"></property>
-    <!--        指定Mapper文件的位置-->
+        <!--        指定Mapper文件的位置-->
         <property name="mapperLocations" value="classpath:mybatis/mapper/*Mapper.xml"></property>
+        <!--    配置分页插件-->
+        <property name="plugins">
+            <list>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <props>
+                            <prop key="dialect">mysql</prop>
+                            <prop key="reasonable">true</prop>
+                        </props>
+                    </property>
+                </bean>
+            </list>
+        </property>
     </bean>
     <!--    配置 MapperScannerConfigurer-->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <!--        配置mapper位置-->
+        <!--        配置mapper位置-->
         <property name="basePackage" value="com.atguigu.crowd.mapper"></property>
     </bean>
 

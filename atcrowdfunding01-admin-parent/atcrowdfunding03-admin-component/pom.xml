@@ -113,5 +113,10 @@
             <artifactId>servlet-api</artifactId>
             <scope>compile</scope>
         </dependency>
+        <!-- MyBatis 分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
     </dependencies>
 </project>

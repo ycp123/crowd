@@ -20,13 +20,28 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <!--    配置xml的异常映射-->
-    <bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <bean id="simpleMappingExceptionResolver"
+          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
                 <prop key="java.lang.Exception">system-error</prop>
+                <prop key="com.atguigu.crowd.exception.AccessForbiddenException">admin-login</prop>
             </props>
         </property>
     </bean>
     <!--    启动注解驱动-->
     <mvc:annotation-driven></mvc:annotation-driven>
+    <!--    直接将视图和地址关联-->
+    <mvc:view-controller path="admin/to/login/page.html" view-name="admin-login"/>
+    <mvc:view-controller path="admin/to/main/page.html" view-name="admin-main"/>
+    <!--    注册拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/admin/to/login/page.html"/>
+            <mvc:exclude-mapping path="/admin/do/login.html"/>
+            <mvc:exclude-mapping path="/admin/do/logout.html"/>
+            <bean class="com.atguigu.crowd.mvc.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

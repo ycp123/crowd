@@ -1,4 +1,5 @@
 package com.atguigu.crowd.test;
+
 import com.atguigu.crowd.Admin;
 import com.atguigu.crowd.mapper.AdminMapper;
 import com.atguigu.crowd.service.api.AdminService;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,7 +18,7 @@ import java.sql.SQLException;
 //指定 Spring 给 Junit 提供的运行器类
 @RunWith(SpringJUnit4ClassRunner.class)
 //加载 Spring 配置文件的注解
-@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml","classpath:spring-persist-tx.xml"})
+@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml", "classpath:spring-persist-tx.xml"})
 public class CrowdTest {
     @Autowired
     private DataSource dataSource;
@@ -28,7 +30,7 @@ public class CrowdTest {
     private AdminService adminService;
 
     @Test
-    public void testLog(){
+    public void testLog() {
         Logger logger = LoggerFactory.getLogger(CrowdTest.class);
         logger.debug("debug lever");
         logger.info("info lever");
@@ -41,16 +43,25 @@ public class CrowdTest {
         Connection connection = dataSource.getConnection();
         System.out.println(connection);
     }
+
     @Test
-    public void testInsertAdmin(){
-        Admin admin = new Admin(null,"tom","123","汤姆","tom@qq.com",null);
+    public void testInsertAdmin() {
+        Admin admin = new Admin(null, "tom", "123", "汤姆", "tom@qq.com", null);
         int count = adminMapper.insert(admin);
         System.out.println(count);
     }
+
     @Test
-    public void testTx(){
-        Admin admin = new Admin(null,"Je","123","杰","Je@qq.com",null);
+    public void testTx() {
+        Admin admin = new Admin(null, "Je", "123", "杰", "Je@qq.com", null);
         adminService.saveAdmin(admin);
 
+    }
+
+    @Test
+    public void testPageHelper() {
+        int i = 335;
+        Admin admin = new Admin(null, "tom" + i, "123", "tom" + i, "tom@qq.com" + i, null);
+        adminMapper.insert(admin);
     }
 }

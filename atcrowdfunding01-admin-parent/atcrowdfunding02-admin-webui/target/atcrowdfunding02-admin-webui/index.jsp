@@ -11,6 +11,7 @@
     <title>Title</title>
     <base href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/ "/>
     <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="layer/layer.js"></script>
     <script type="text/javascript">
         $(function () {
             $('#btn1').click(function () {
@@ -84,6 +85,10 @@
                     }
                 })
             })
+            $('#btn4').click(function () {
+                alert("111")
+                layer.msg("222")
+            })
         })
     </script>
 </head>
@@ -95,5 +100,7 @@
 <button id="btn2">Send [5,8,12] two</button>
 <br>
 <button id="btn3">Send compose data</button>
+<br>
+<button id="btn4">点我弹框</button>
 </body>
 </html>

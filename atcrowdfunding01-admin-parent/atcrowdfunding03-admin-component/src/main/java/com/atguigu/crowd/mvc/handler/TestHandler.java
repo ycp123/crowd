@@ -28,6 +28,7 @@ public class TestHandler {
         boolean judge = CrowdUtil.judgeRequestType(request);
         logger.info("judge="+judge);
         List<Admin> adminList = adminService.getAll();
+        System.out.println(10/0);
         modelMap.addAttribute("adminList",adminList);
         return "target";
     }
