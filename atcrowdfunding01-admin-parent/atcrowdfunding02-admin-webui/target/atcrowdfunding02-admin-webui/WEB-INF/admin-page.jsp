@@ -23,14 +23,15 @@
             current_page:${requestScope.pageInfo.pageNum - 1},
             prev_text: "上一页",
             next_text: "下一页",
-            items_per_page:${requestScope.pageInfo.pageSize} // 每页显示 1 项
+            items_per_page:${requestScope.pageInfo.pageSize} // 每页显示条数
         });
     }
+
     function pageselectCallback(page_index, jq) {
         //获取pageNum
         var pageNum = page_index + 1;
         //跳转到后台去获取数据
-        window.location.href = "admin/get/page.html?pageNum=" + pageNum;
+        window.location.href = "admin/get/page.html?pageNum=" + pageNum + "&keyWord=${param.keyWord}";
         //关闭超链接
         return false;
     }
@@ -46,22 +47,24 @@
                     <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
                 </div>
                 <div class="panel-body">
-                    <form class="form-inline" role="form" style="float:left;">
+                    <form action="admin/get/page.html" method="post" class="form-inline" role="form"
+                          style="float:left;">
                         <div class="form-group has-feedback">
                             <div class="input-group">
                                 <div class="input-group-addon">查询条件</div>
-                                <input class="form-control has-success" type="text" placeholder="请输入查询条件">
+                                <input name="keyWord" class="form-control has-success" type="text"
+                                       placeholder="请输入查询条件">
                             </div>
                         </div>
-                        <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询
+                        <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询
                         </button>
                     </form>
                     <button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i
                             class=" glyphicon glyphicon-remove"></i> 删除
                     </button>
-                    <button type="button" class="btn btn-primary" style="float:right;"
-                            onclick="window.location.href='add.html'"><i class="glyphicon glyphicon-plus"></i> 新增
-                    </button>
+                    <a class="btn btn-primary" style="float:right;" href="admin/do/add/page.html">
+                        <i class="glyphicon glyphicon-plus"></i> 新增
+                    </a>
                     <br>
                     <hr style="clear:both;">
                     <div class="table-responsive">
@@ -94,12 +97,14 @@
                                             <button type="button" class="btn btn-success btn-xs">
                                                 <i class=" glyphicon glyphicon-check"></i>
                                             </button>
-                                            <button type="button" class="btn btn-primary btn-xs">
+                                            <a href="admin/to/edit/page.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&keyWord=${param.keyWord}"
+                                               class="btn btn-primary btn-xs">
                                                 <i class=" glyphicon glyphicon-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                <i class=" glyphicon glyphicon-remove"></i>
-                                            </button>
+                                            </a>
+                                            <a class="btn btn-danger btn-xs"
+                                               href="admin/remove/${admin.id}/${param.keyWord}/${requestScope.pageInfo.pageNum}.html">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 </c:forEach>

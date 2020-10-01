@@ -2,7 +2,9 @@ package com.atguigu.crowd.mapper;
 
 import com.atguigu.crowd.AdminExample;
 import com.atguigu.crowd.Admin;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface AdminMapper {

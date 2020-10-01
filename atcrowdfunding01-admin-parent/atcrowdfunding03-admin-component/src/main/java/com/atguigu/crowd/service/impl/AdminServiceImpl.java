@@ -3,15 +3,22 @@ package com.atguigu.crowd.service.impl;
 import com.atguigu.crowd.Admin;
 import com.atguigu.crowd.AdminExample;
 import com.atguigu.crowd.constant.CrowdConstant;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUseException;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUseForUpdateException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.mapper.AdminMapper;
 import com.atguigu.crowd.service.api.AdminService;
 import com.atguigu.crowd.util.CrowdUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -19,9 +26,35 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
     @Resource
     AdminMapper adminMapper;
+    Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
     public void saveAdmin(Admin admin) {
-        adminMapper.insert(admin);
+        //1.将密码加密
+        //1.1获取明文密码
+        String source = admin.getUserPswd();
+        //1.2加密
+        String encoding = CrowdUtil.md5(source);
+        //1.3将加密密码覆盖明文密码
+        admin.setUserPswd(encoding);
+        //2.生成系统创建时间
+        //2.1选中时间格式
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        //2.2获取系统时间
+        String createDate = simpleDateFormat.format(new Date());
+        //2.3将系统时间存入admin对象中
+        admin.setCreateTime(createDate);
+        //3.将数据插入到数据库中
+        try {
+            //捕获异常
+            adminMapper.insert(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("0000000000000000000");
+            if (e instanceof DuplicateKeyException) {
+                logger.info("11111111111111111");
+                throw new LoginAcctAlreadyInUseException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+            }
+        }
     }
 
     public List<Admin> getAll() {
@@ -74,5 +107,36 @@ public class AdminServiceImpl implements AdminService {
         PageInfo<Admin> pageInfo = new PageInfo<Admin>(adminList);
         //4.返回结果
         return pageInfo;
+    }
+
+    public void removeAdminByAdminId(Integer adminId) {
+        adminMapper.deleteByPrimaryKey(adminId);
+    }
+
+    public Admin getAdminById(Integer adminId) {
+        //1.通过adminId查询数据库
+        Admin admin = adminMapper.selectByPrimaryKey(adminId);
+        //2.返回结果
+        return admin;
+    }
+
+    public String judgeKeyWord(String keyWord) {
+        if (keyWord == null) {
+            return "";
+        }
+        return keyWord;
+    }
+
+    public void update(Admin admin) {
+        try {
+            //修改数据库中admin的信息
+            adminMapper.updateByPrimaryKeySelective(admin);
+        } catch (Exception e) {
+            //判断异常类型
+            if (e instanceof DuplicateKeyException) {
+                //抛出异常
+                throw new LoginAcctAlreadyInUseForUpdateException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+            }
+        }
     }
 }

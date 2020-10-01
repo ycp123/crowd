@@ -26,6 +26,7 @@
             <props>
                 <prop key="java.lang.Exception">system-error</prop>
                 <prop key="com.atguigu.crowd.exception.AccessForbiddenException">admin-login</prop>
+                <prop key="com.atguigu.crowd.exception.LoginAcctAlreadyInUseException">admin-add</prop>
             </props>
         </property>
     </bean>
@@ -34,6 +35,8 @@
     <!--    直接将视图和地址关联-->
     <mvc:view-controller path="admin/to/login/page.html" view-name="admin-login"/>
     <mvc:view-controller path="admin/to/main/page.html" view-name="admin-main"/>
+    <mvc:view-controller path="admin/do/add/page.html" view-name="admin-add"/>
+    <mvc:view-controller path="role/to/page.html" view-name="role-page"/>
     <!--    注册拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>

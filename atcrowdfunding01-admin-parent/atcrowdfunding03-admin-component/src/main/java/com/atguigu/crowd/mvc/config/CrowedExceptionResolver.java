@@ -2,10 +2,14 @@ package com.atguigu.crowd.mvc.config;
 
 import com.atguigu.crowd.constant.CrowdConstant;
 import com.atguigu.crowd.exception.AccessForbiddenException;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUseException;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUseForUpdateException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.util.CrowdUtil;
 import com.atguigu.crowd.util.ResultEntity;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +21,7 @@ import java.io.IOException;
 //表示一个异常处理类
 @ControllerAdvice
 public class CrowedExceptionResolver {
+
     //指定异常类型
     @ExceptionHandler(value = NullPointerException.class)
     public ModelAndView resolveNullPointerException(NullPointerException exception,
@@ -60,11 +65,28 @@ public class CrowedExceptionResolver {
         String viewName = "admin-login";
         return commonResolve(viewName, exception, request, response);
     }
+
     @ExceptionHandler(value = AccessForbiddenException.class)
     public ModelAndView resolveAccessForbiddenException(AccessForbiddenException exception,
                                                         HttpServletRequest request,
-                                                        HttpServletResponse response) throws IOException{
+                                                        HttpServletResponse response) throws IOException {
         String viewName = "admin-login";
-        return commonResolve(viewName,exception,request,response);
+        return commonResolve(viewName, exception, request, response);
+    }
+
+    @ExceptionHandler(value = LoginAcctAlreadyInUseException.class)
+    public ModelAndView resolveLoginAcctAlreadyInUseException(LoginAcctAlreadyInUseException exception,
+                                                              HttpServletRequest request,
+                                                              HttpServletResponse response) throws IOException {
+        String viewName = "admin-add";
+        return commonResolve(viewName, exception, request, response);
+    }
+
+    @ExceptionHandler(value = LoginAcctAlreadyInUseForUpdateException.class)
+    public ModelAndView resolveLoginAcctAlreadyInUseForUpdateException(LoginAcctAlreadyInUseForUpdateException exception,
+                                                                       HttpServletRequest request,
+                                                                       HttpServletResponse response) throws IOException {
+        String viewName = "system-error";
+        return commonResolve(viewName, exception, request, response);
     }
 }
