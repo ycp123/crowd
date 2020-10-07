@@ -5,13 +5,13 @@
          version="2.5">
     <display-name>Archetype Created Web Application</display-name>
     <!--  配置 ContextLoaderListener-->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring-persist-*.xml</param-value>
-    </context-param>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+<!--    <context-param>-->
+<!--        <param-name>contextConfigLocation</param-name>-->
+<!--        <param-value>classpath:spring-persist-*.xml</param-value>-->
+<!--    </context-param>-->
+<!--    <listener>-->
+<!--        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+<!--    </listener>-->
     <!-- 配置 CharacterEncodingFilter 解决 POST 请求的字符乱码问题 -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -36,12 +36,21 @@
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!-- SpringSecurity 的 Filter -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>springDispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring-web-mvc.xml</param-value>
+            <param-value>classpath:spring-web-mvc.xml,classpath:spring-persist-*.xml</param-value>
         </init-param>
         <!-- 让 DispatcherServlet 在 Web 应用启动时创建对象、初始化 -->
         <!-- 默认情况：Servlet 在第一次请求的时候创建对象、初始化 -->

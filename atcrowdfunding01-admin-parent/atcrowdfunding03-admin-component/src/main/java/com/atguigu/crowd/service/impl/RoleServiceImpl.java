@@ -18,9 +18,10 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 获取角色信息数据
+     *
      * @param pageSize 页面显示信息行数
-     * @param pageNum 页面当前页
-     * @param keyWord 关键字
+     * @param pageNum  页面当前页
+     * @param keyWord  关键字
      * @return 角色信息
      */
     public PageInfo<Role> getPageInfo(Integer pageSize, Integer pageNum, String keyWord) {
@@ -48,4 +49,13 @@ public class RoleServiceImpl implements RoleService {
         criteria.andIdIn(roleIdList);
         roleMapper.deleteByExample(example);
     }
+
+    public List<Role> getAssignedRole(Integer adminId) {
+        return roleMapper.selectAssignedRole(adminId);
+    }
+
+    public List<Role> getUnAssignedRole(Integer adminId) {
+        return roleMapper.selectUnAssignedRole(adminId);
+    }
+
 }

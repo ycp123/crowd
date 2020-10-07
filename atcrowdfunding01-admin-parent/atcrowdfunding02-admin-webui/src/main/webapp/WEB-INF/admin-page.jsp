@@ -94,9 +94,10 @@
                                         <td>${admin.userName}</td>
                                         <td>${admin.email}</td>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-xs">
+                                            <a href="assign/to/assign/role/page.html?adminId=${admin.id }&pageNum=${requestScope.pageInfo.pageNum }&keyWord=${param.keyWord }"
+                                               class="btn btn-success btn-xs">
                                                 <i class=" glyphicon glyphicon-check"></i>
-                                            </button>
+                                            </a>
                                             <a href="admin/to/edit/page.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&keyWord=${param.keyWord}"
                                                class="btn btn-primary btn-xs">
                                                 <i class=" glyphicon glyphicon-pencil"></i>

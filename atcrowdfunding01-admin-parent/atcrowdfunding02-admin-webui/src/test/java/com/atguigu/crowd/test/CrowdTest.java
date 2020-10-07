@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -20,8 +21,10 @@ import java.sql.SQLException;
 //指定 Spring 给 Junit 提供的运行器类
 @RunWith(SpringJUnit4ClassRunner.class)
 //加载 Spring 配置文件的注解
-@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml", "classpath:spring-persist-tx.xml"})
+@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml", "classpath:spring-persist-tx.xml","classpath:spring-web-mvc.xml"})
 public class CrowdTest {
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private DataSource dataSource;
 
@@ -34,6 +37,11 @@ public class CrowdTest {
     @Autowired
     private RoleMapper roleMapper;
 
+    @Test
+    public void testBCryptPasswordEncoder(){
+        System.out.println(passwordEncoder.encode("123123"));
+        System.out.println(passwordEncoder.encode("123123"));
+    }
     @Test
     public void insertRole() {
         for (int i = 1; i < 137; i++) {

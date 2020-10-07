@@ -13,7 +13,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,6 +26,8 @@ import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
     @Resource
     AdminMapper adminMapper;
     Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
@@ -33,7 +37,7 @@ public class AdminServiceImpl implements AdminService {
         //1.1获取明文密码
         String source = admin.getUserPswd();
         //1.2加密
-        String encoding = CrowdUtil.md5(source);
+        String encoding = passwordEncoder.encode(source);
         //1.3将加密密码覆盖明文密码
         admin.setUserPswd(encoding);
         //2.生成系统创建时间
@@ -98,6 +102,14 @@ public class AdminServiceImpl implements AdminService {
         return admin;
     }
 
+    public List<Admin> getAdminByLoginAcct(String loginAcct) {
+        AdminExample adminExample = new AdminExample();
+        AdminExample.Criteria criteria = adminExample.createCriteria();
+        criteria.andLoginAcctEqualTo(loginAcct);
+        List<Admin> adminList = adminMapper.selectByExample(adminExample);
+        return adminList;
+    }
+
     public PageInfo<Admin> getAdminPage(String keyWord, int pageNum, int pageSize) {
         //1.通过pageHelper开启分页
         PageHelper.startPage(pageNum, pageSize);
@@ -137,6 +149,15 @@ public class AdminServiceImpl implements AdminService {
                 //抛出异常
                 throw new LoginAcctAlreadyInUseForUpdateException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
             }
+        }
+    }
+
+    public void saveAdminRoleRelationship(Integer adminId, List<Integer> roleIdList) {
+        // 1.根据 adminId 删除旧的关联关系数据
+        adminMapper.deleteOLdRelationship(adminId);
+        // 2.根据 roleIdList 和 adminId 保存新的关联关系
+        if (roleIdList != null && roleIdList.size() > 0) {
+            adminMapper.insertNewRelationship(adminId, roleIdList);
         }
     }
 }

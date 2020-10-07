@@ -4,6 +4,8 @@
 <%@include file="include-head.jsp" %>
 <link rel="stylesheet" href="css/pagination.css">
 <script type="text/javascript" src="jquery/jquery.pagination.js"></script>
+<link rel="stylesheet" href="ztree/zTreeStyle.css"/>
+<script type="text/javascript" src="ztree/jquery.ztree.all-3.5.min.js"></script>
 <script type="text/javascript" src="crowdJs/my-role.js"></script>
 <script type="text/javascript">
     $(function () {
@@ -78,7 +80,7 @@
                         generatePage();
                     }
                     if (result == "FAILED") {
-                        layer.msg("操作失败！" + response.message);
+                        layer.msg("操作失败！" + response.operationMessage);
                     }
                 },
                 error: function (response) {
@@ -104,7 +106,7 @@
                         generatePage();
                     }
                     if (result == "FAILED") {
-                        layer.msg("操作失败！" + response.message);
+                        layer.msg("操作失败！" + response.operationMessage);
                     }
                 },
                 error: function (response) {
@@ -112,7 +114,7 @@
                 }
             })
             $("#confirmModal").modal("hide");
-            $("#summaryBox").prop("checked",false);
+            $("#summaryBox").prop("checked", false);
         })
         //单选删除操作
         $("#rolePageBody").on("click", ".removeBtn", function () {
@@ -141,14 +143,56 @@
                 var roleId = this.id;
                 var roleName = $(this).parent().next().text();
                 roleArray.push({
-                    roleId:roleId,
-                    roleName:roleName
+                    roleId: roleId,
+                    roleName: roleName
                 });
                 console.log(roleArray)
 
             });
             console.log(roleArray)
             showConfirmModal(roleArray);
+        })
+        $("#rolePageBody").on("click", ".checkBtn", function () {
+            window.roleId = this.id;
+            $("#assignModal").modal("show");
+            fillAuthTree();
+        })
+        $("#assignBtn").click(function () {
+            //设置存放authId的数组
+            var authIdList = [];
+            var zTreeObj = $.fn.zTree.getZTreeObj("authTreeDemo");
+            var zTreeNodes = zTreeObj.getCheckedNodes();
+            //遍历zTreeNodes获取authId
+            for (var i = 0; i < zTreeNodes.length; i++) {
+                var authId = zTreeNodes[i].id;
+                authIdList.push(authId);
+            }
+
+            var requsetBody = {
+                authIdList: authIdList,
+                roleId: [window.roleId]
+            }
+            //进行权限分配
+            $.ajax({
+                url: "assign/do/role/assign/auth.json",
+                type: "post",
+                data: JSON.stringify(requsetBody),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var result = response.operationResult;
+                    if (result == "SUCCESS") {
+                        layer.msg("操作成功！");
+                    }
+                    if (result == "FAILED") {
+                        layer.msg("操作失败！" + response.operationMessage);
+                    }
+                },
+                error: function (response) {
+                    layer.msg(response.status+" "+response.statusText);
+                }
+            })
+            $("#assignModal").modal("hide");
         })
     })
 
@@ -176,7 +220,8 @@
                                 class="glyphicon glyphicon-search"></i> 查询
                         </button>
                     </form>
-                    <button id="batchRemoveBtn" type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i
+                    <button id="batchRemoveBtn" type="button" class="btn btn-danger"
+                            style="float:right;margin-left:10px;"><i
                             class=" glyphicon glyphicon-remove"></i> 删除
                     </button>
                     <button id="showAddModalBtn" type="button" class="btn btn-primary" style="float:right;">
@@ -217,5 +262,6 @@
 <%@include file="modal-role-add.jsp" %>
 <%@include file="modal-role-edit.jsp" %>
 <%@include file="modal-role-confirm.jsp" %>
+<%@include file="modal-role-assign-auth.jsp" %>
 </body>
 </html>

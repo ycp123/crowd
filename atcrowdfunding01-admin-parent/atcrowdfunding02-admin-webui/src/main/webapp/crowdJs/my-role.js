@@ -1,3 +1,64 @@
+function fillAuthTree() {
+    var ajaxReturn = $.ajax({
+        url: "assign/get/all/auth.json",
+        type: "post",
+        dataType: "json",
+        async: false
+    })
+    if (ajaxReturn.status != 200) {
+        layer.msg(" 请 求 处 理 出 错 ！ 响 应 状 态 码 是 ： " + ajaxReturn.status + " 说 明 是 ： " + ajaxReturn.statusText);
+        return;
+    }
+
+    var authList = ajaxReturn.responseJSON.queryData;
+    var setting = {
+        data: {
+            simpleData: {
+                enable: "true",
+                pIdKey: "categoryId"
+            },
+            key: {
+                // 使用 title 属性显示节点名称，不用默认的 name 作为属性名了
+                name: "title"
+            }
+        },
+        check: {
+            enable: true
+        }
+    }
+    //生成树型结构
+    $.fn.zTree.init($("#authTreeDemo"), setting, authList);
+    var zTreeObj = $.fn.zTree.getZTreeObj("authTreeDemo");
+    zTreeObj.expandAll(true);
+
+    ajaxReturn = $.ajax({
+        url: "assign/get/assigned/auth/id/by/role/id.json",
+        type: "post",
+        data: {
+            roleId: window.roleId
+        },
+        dataType: "json",
+        async: false
+    })
+    if (ajaxReturn.status != 200) {
+        layer.msg(" 请 求 处 理 出 错 ！ 响 应 状 态 码 是 ： " + ajaxReturn.status + " 说 明 是 ： " + ajaxReturn.statusText);
+        return;
+    }
+    //获取auth_id数组
+    var authIdArray = ajaxReturn.responseJSON.queryData;
+
+    //遍历
+    for (var i = 0; i < authIdArray.length; i++) {
+        var authId = authIdArray[i];
+        var zTreeNode = zTreeObj.getNodeByParam("id", authId);
+        var checked = true;
+        var checkTypeFlag = false;
+        zTreeObj.checkNode(zTreeNode, checked, checkTypeFlag);
+    }
+
+
+}
+
 function showConfirmModal(roleArray) {
     console.log(roleArray)
     //打开
@@ -10,7 +71,7 @@ function showConfirmModal(roleArray) {
     for (var i = 0; i < roleArray.length; i++) {
         var role = roleArray[i];
         var roleName = role.roleName;
-        $("#roleNameDiv").append(roleName+"<br/>");
+        $("#roleNameDiv").append(roleName + "<br/>");
         var roleId = role.roleId;
         window.roleIdArray.push(roleId);
     }
@@ -68,7 +129,7 @@ function fillTableBody(pageInfo) {
         var numberTd = "<td>" + (i + 1) + "</td>";
         var checkboxTd = "<td><input id='" + roleId + "' class='itemBox' type='checkbox'></td>";
         var roleNameTd = "<td>" + roleName + "</td>";
-        var checkBtn = "<button type='button' id='" + roleId + "' class='btn btn-success btn-xs'><i class=' glyphicon glyphicon-check'></i></button>";
+        var checkBtn = "<button type='button' id='" + roleId + "' class='btn btn-success btn-xs checkBtn'><i class=' glyphicon glyphicon-check'></i></button>";
         var pencilBtn = "<button type='button' id='" + roleId + "' class='btn btn-primary btn-xs pencilBtn'><i class=' glyphicon glyphicon-pencil'></i></button>";
         var removeBtn = "<button type='button' id='" + roleId + "' class='btin btn-danger btn-xs removeBtn'><i class=' glyphicon glyphicon-remove'></i></button>";
         var buttonTd = "<td>" + checkBtn + " " + pencilBtn + " " + removeBtn + "</td>";
@@ -101,7 +162,7 @@ function paginationCallBack(pageIndex, jQuery) {
     // 调用分页函数
     generatePage();
     //取消全选选中状态
-    $("#summaryBox").prop("checked",false);
+    $("#summaryBox").prop("checked", false);
     // 取消页码超链接的默认行为
     return false;
 

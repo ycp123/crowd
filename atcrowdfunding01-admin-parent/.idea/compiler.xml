@@ -7,11 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="atcrowdfunding05-common-util" />
-        <module name="atcrowdfunding06-common-reverse" />
         <module name="atcrowdfunding03-admin-component" />
+        <module name="atcrowdfunding06-common-reverse" />
         <module name="atcrowdfunding04-admin-entity" />
         <module name="atcrowdfunding02-admin-webui" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="security" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

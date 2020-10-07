@@ -5,6 +5,7 @@ import com.atguigu.crowd.service.api.RoleService;
 import com.atguigu.crowd.util.ResultEntity;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.List;
 public class RoleHandler {
     @Autowired
     private RoleService roleService;
+    @PreAuthorize("hasRole('部长')")
     @RequestMapping("role/get/page/info.json")
     @ResponseBody
     public ResultEntity<PageInfo<Role>> getPageInfo(@RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,

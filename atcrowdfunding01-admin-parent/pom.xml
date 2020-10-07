@@ -21,8 +21,8 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-        <!-- Spring 依赖 -->
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+            <!-- Spring 依赖 -->
+            <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-orm</artifactId>
@@ -156,7 +156,7 @@
             </dependency>
             <!-- SpringSecurity 配置 -->
             <dependency>
-            <groupId>org.springframework.security</groupId>
+                <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-config</artifactId>
                 <version>4.2.10.RELEASE</version>
             </dependency>
@@ -166,6 +166,7 @@
                 <artifactId>spring-security-taglibs</artifactId>
                 <version>4.2.10.RELEASE</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>

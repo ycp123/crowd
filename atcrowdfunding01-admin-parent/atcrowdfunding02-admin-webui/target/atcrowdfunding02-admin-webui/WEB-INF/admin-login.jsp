@@ -37,9 +37,10 @@
 
 <div class="container">
 
-    <form class="form-signin" role="form" method="post" action="admin/do/login.html">
+    <form class="form-signin" role="form" method="post" action="admin/security/login.html">
         <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i> 管理员登录</h2>
         <p>${requestScope.exception.message }</p>
+        <p>${SPRING_SECURITY_LAST_EXCEPTION.message}</p>
         <div class="form-group has-success has-feedback">
             <input type="text" class="form-control" name="loginAcct" id="loginAcct" placeholder="请输入登录账号" autofocus>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>

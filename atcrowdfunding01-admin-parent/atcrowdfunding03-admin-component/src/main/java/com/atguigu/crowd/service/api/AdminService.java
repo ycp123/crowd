@@ -13,6 +13,8 @@ public interface AdminService {
 
     Admin getAdminByLoginAcct(String loginAcct, String userPswd);
 
+    List<Admin> getAdminByLoginAcct(String loginAcct);
+
     PageInfo<Admin> getAdminPage(String keyWord, int pageNum, int pageSize);
 
     void removeAdminByAdminId(Integer adminId);
@@ -22,4 +24,6 @@ public interface AdminService {
     Admin getAdminById(Integer adminId);
 
     void update(Admin admin);
+
+    void saveAdminRoleRelationship(Integer adminId, List<Integer> roleIdList);
 }

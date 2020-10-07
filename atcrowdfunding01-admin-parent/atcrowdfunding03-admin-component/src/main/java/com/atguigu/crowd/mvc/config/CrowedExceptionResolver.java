@@ -31,6 +31,12 @@ public class CrowedExceptionResolver {
         return commonResolve(viewName, exception, request, response);
     }
 
+    @ExceptionHandler(value = Exception.class)
+    public ModelAndView resolveException(Exception exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String viewName = "system-error";
+        return commonResolve(viewName, exception, request, response);
+    }
+
     private ModelAndView commonResolve(String viewName, Exception exception, HttpServletRequest request,
                                        HttpServletResponse response) throws IOException {
         //1.判断异常是否是ajax类型
