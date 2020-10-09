@@ -23,8 +23,7 @@ public class RoleHandler {
     @ResponseBody
     public ResultEntity<PageInfo<Role>> getPageInfo(@RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
                               @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
-                              @RequestParam(value = "keyWord",defaultValue = "") String keyWord
-                              ){
+                              @RequestParam(value = "keyWord",defaultValue = "") String keyWord){
         //1.查询角色信息
         PageInfo<Role> pageInfo = roleService.getPageInfo(pageSize, pageNum, keyWord);
         //2.将结果封装到resultEntity中

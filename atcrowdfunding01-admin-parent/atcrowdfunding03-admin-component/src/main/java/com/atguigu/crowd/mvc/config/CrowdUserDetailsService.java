@@ -53,5 +53,7 @@ public class CrowdUserDetailsService implements UserDetailsService {
         }
         // 6.返回securityAdmin对象
         return new SecurityAdmin(admin,authorities);
+
+
     }
 }

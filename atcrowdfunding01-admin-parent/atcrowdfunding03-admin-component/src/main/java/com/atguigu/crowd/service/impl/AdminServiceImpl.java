@@ -102,6 +102,11 @@ public class AdminServiceImpl implements AdminService {
         return admin;
     }
 
+    /**
+     * 通过账户获取用户信息
+     * @param loginAcct 账户名称
+     * @return 用户对象列表
+     */
     public List<Admin> getAdminByLoginAcct(String loginAcct) {
         AdminExample adminExample = new AdminExample();
         AdminExample.Criteria criteria = adminExample.createCriteria();

@@ -1,5 +1,6 @@
 package com.atguigu.crowd;
 
+
 public class Admin {
     private Integer id;
 
