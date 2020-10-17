@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../atcrowdfunding05-common-util/pom.xml" />
         <option value="$PROJECT_DIR$/../atcrowdfunding06-common-reverse/pom.xml" />
+        <option value="$PROJECT_DIR$/../atcrowdfunding07-member-parent/pom.xml" />
       </list>
     </option>
   </component>

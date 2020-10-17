@@ -1,0 +1,25 @@
+server:
+  port: 80
+spring:
+  application:
+    name: crowd-zuul
+  redis:
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+zuul:
+  ignored-services: "*"
+  sensitive-headers: "*"
+  routes:
+    crowd-portal:
+      serviceId: crowd-authentication
+      path: /**
+    crowd-project:
+      seviceId: crowd-project
+      path: /project/**
+ribbon:        #设置ribbon的超时时间小于zuul的超时时间
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

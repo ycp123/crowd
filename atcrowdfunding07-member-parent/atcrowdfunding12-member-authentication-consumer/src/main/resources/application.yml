@@ -1,0 +1,21 @@
+server:
+  port: 4000
+spring:
+  application:
+    name: crowd-authentication
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+short:
+  message:
+    host: https://zwp.market.alicloudapi.com
+    path: /sms/sendv2
+    method: GET
+    app-code: e76b2384223448eaa1e61a0c9fc8221e

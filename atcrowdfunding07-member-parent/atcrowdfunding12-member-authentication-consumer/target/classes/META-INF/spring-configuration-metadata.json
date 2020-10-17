@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "short.message",
+      "type": "com.atguigu.crowd.config.ShortMessageConfig",
+      "sourceType": "com.atguigu.crowd.config.ShortMessageConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "short.message.app-code",
+      "type": "java.lang.String",
+      "sourceType": "com.atguigu.crowd.config.ShortMessageConfig"
+    },
+    {
+      "name": "short.message.host",
+      "type": "java.lang.String",
+      "sourceType": "com.atguigu.crowd.config.ShortMessageConfig"
+    },
+    {
+      "name": "short.message.method",
+      "type": "java.lang.String",
+      "sourceType": "com.atguigu.crowd.config.ShortMessageConfig"
+    },
+    {
+      "name": "short.message.path",
+      "type": "java.lang.String",
+      "sourceType": "com.atguigu.crowd.config.ShortMessageConfig"
+    }
+  ],
+  "hints": []
+}

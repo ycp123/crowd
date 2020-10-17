@@ -1,0 +1,22 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: crowd-project
+  thymeleaf:
+    prefix: classpath:/templetes/
+    suffix: .html
+  redis:
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka/
+aliyun:
+  oss:
+    access-key-id: LTAI4G3XW5BKkMxdyQgS1Ts3
+    access-key-secret: 1WN8lrJeG2xz9Vxn0kekPPEgqrZ1vY
+    bucket-domain: http://crowd20201015.oss-cn-beijing.aliyuncs.com
+    bucket-name: crowd20201015
+    end-point: http://oss-cn-beijing.aliyuncs.com
